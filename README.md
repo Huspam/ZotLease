@@ -1,2 +1,2 @@
-# Zotlow
-A UCI Leasing Forum
+# ZotLease
+A UCI real-estate marketplace
