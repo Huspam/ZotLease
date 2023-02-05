@@ -1,12 +1,11 @@
 body{
     background-color: #1D1E26;
     margin-left: 10%;
-      margin-right: 10%;
-      margin-bottom: 5%;
-      font-size: 150%;
+    margin-right: 10%;
+    margin-bottom: 5%;
     color: #FFFEF7;
   }
 
 h1{
-    align:center;
+    text-align: center;
 }
