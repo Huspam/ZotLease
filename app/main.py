@@ -6,7 +6,6 @@ import json
 
 app = Flask(__name__)
 #add pg_conn_string as environment variable key
-#postgresql://thzaw12264:dTnaXXnICWpFY0PfrW0q2g@coiled-drake-4885.6wr.cockroachlabs.cloud:26257/coiled-drake-4885.defaultdb is the value
 #need to add verify ssl to connection string later
 pg_conn_string = os.environ["PG_CONN_STRING"]
 connection = psycopg2.connect(pg_conn_string)
