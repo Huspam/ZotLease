@@ -3,4 +3,10 @@
 
 {% block content %}
     <h1>Welcome to ZotLease</h1>
+    <h2>
+        <img src="https://www.americancampus.com/getmedia/f22df01a-9752-4933-ae2b-1512dcbe5c0d/760_31_Gallery_730x547.jpg"/>
+        <p>{{listings[0][1]}} {{listings[0][4]}} Unit {{listings[0][2]}} for {{listings[0][3]}}</p>
+        <p>{{listings[0][5]}} - {{listings[0][6]}}</p>
+        <p>${{listings[0][8]}}</p>
+    </h2>
 {% endblock %}
