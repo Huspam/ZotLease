@@ -8,25 +8,19 @@ pg_conn_string = os.environ["PG_CONN_STRING"]
 connection = psycopg2.connect(pg_conn_string)
 cursor = connection.cursor()
 
-# insert_data(connection,cursor, 'VDC', 'Quad', 'Male', 62714, 'Sublet', 'February', 'June', 1004, 'Hi, please message me if interested!')
-# get_data(connection,cursor)
-
 @app.route("/", methods=['GET'])
 def index():
     listings = get_data(connection, cursor)
     return render_template('index.html',listings=listings)
 
-@app.route("/forms/enter", methods=['GET', 'POST'])
+@app.route("/forms/enter", methods=['GET'])
 def enter():
     communities = ['Arroyo Vista', 'Camino del Sol', 'Puerta del Sol', 'Plaza Verde', 'Plaza Verde II', 'Vista Del Campo', 'Vista Del Campo Norte']
     roomtypes = ['Single', 'Double', 'Quad']
     genders = ['Male', 'Female']
-    #uni
     leasetypes = ['Sublease', 'Sublet']
     startdates = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     enddates = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-    #price
-    #description
     return render_template('listEntry.html', communities=communities, roomtypes=roomtypes, genders=genders, leasetypes=leasetypes, startdates=startdates, enddates=enddates)
 
 @app.route("/listings/yourListings", methods=['GET'])

@@ -10,7 +10,7 @@
 #     return self.cursor
 
 
-def create_table(connection, cursor):
+def create_listings_table(connection, cursor):
   cursor.execute("CREATE TABLE Listings ( \
   id UUID NOT NULL DEFAULT gen_random_uuid(), \
   community STRING NOT NULL, \
@@ -22,6 +22,18 @@ def create_table(connection, cursor):
   enddate STRING NOT NULL, \
   price INT NOT NULL, \
   description STRING NULL \
+  )")
+  connection.commit()
+
+
+def create_accounts_table(connection, cursor):
+  cursor.execute("CREATE TABLE Accounts ( \
+  id UUID NOT NULL DEFAULT gen_random_uuid(), \
+  username STRING NOT NULL, \
+  password STRING NOT NULL, \
+  name STRING NOT NULL, \
+  email STRING NOT NULL, \
+  phone STRING NOT NULL, \
   )")
   connection.commit()
 
@@ -46,7 +58,6 @@ def delete_rows(connection, cursor, id):
 
 def get_data(connection, cursor):
   cursor.execute('''SELECT * from Listings''')
-  result = cursor.fetchall()
-  print(result)
+  result = cursor.fetchall() 
   connection.commit()
   return result
