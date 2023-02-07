@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 from api import *
 import os
 import psycopg2
-import json
 
 app = Flask(__name__)
 pg_conn_string = os.environ["PG_CONN_STRING"]

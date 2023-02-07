@@ -3,55 +3,88 @@
 
 {% block content %}
     <h1>Lease Info</h1>
+    <p>Please provide some information about your lease.</p>
     <body>
-        <form action="{{ url_for('add_listing') }}" method="POST">
-            <p>Community
-                <select name="Community">
-                    {% for community in communities %}
-                        <option value= "{{community}}" SELECTED>{{community}}</option>"
-                    {% endfor %}
-                </select>
-            </p>
-            <p>Room Type 
-                <select name="Room Type">
-                    {% for roomtype in roomtypes %}
-                        <option value= "{{roomtype}}" SELECTED>{{roomtype}}</option>"
-                    {% endfor %}
-                </select>
-            </p>
-            <p>Gender
-                <select name="Gender">
-                    {% for gender in genders %}
-                        <option value= "{{gender}}" SELECTED>{{gender}}</option>"
-                    {% endfor %}
-                </select>
-            </p>
-            <p>Unit Number <input type="number" name="Unit" /></p>
-            <p>Lease Type
-                <select name="Lease Type">
-                    {% for leasetype in leasetypes %}
-                        <option value= "{{leasetype}}" SELECTED>{{leasetype}}</option>"
-                    {% endfor %}
-                </select>
-            </p>
-            <p>Starting Month
-                <select name="Starting Month">
-                    {% for startdate in startdates %}
-                        <option value= "{{startdate}}" SELECTED>{{startdate}}</option>"
-                    {% endfor %}
-                </select>
-            </p>
-            <p>Ending Month
-                <select name="Ending Month">
-                    {% for enddate in enddates %}
-                        <option value= "{{enddate}}" SELECTED>{{enddate}}</option>"
-                    {% endfor %}
-                </select>
-            </p>
-            <p>Price <input type="number" name="Price" /></p>
-            <p>Description (optional) <input type="text" name="Description" /></p>
-            <br/><br/>
-            <input type="submit" value="Submit" />
-        </form>
+        <table class="leaseTable">
+            <form action="{{ url_for('add_listing') }}" method="POST">
+                <tr>
+                    <td id="identifier">Community <span id="red-star">*</span></td>
+                    <td>
+                        <select name="Community" REQUIRED>
+                            {% for community in communities %}
+                                <option value= "{{community}}" SELECTED>{{community}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="identifier">Room Type <span id="red-star">*</span></td>
+                    <td>
+                        <select name="Room Type" REQUIRED>
+                            {% for roomtype in roomtypes %}
+                                <option value= "{{roomtype}}" SELECTED>{{roomtype}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="identifier">Gender <span id="red-star">*</span></td>
+                    <td>
+                        <select name="Gender" REQUIRED> 
+                            {% for gender in genders %}
+                                <option value= "{{gender}}" SELECTED>{{gender}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="identifier">Unit Number <span id="red-star">*</span></td>
+                    <td><input type="number" name="Unit" /></td>
+                </tr>
+                <tr>
+                    <td id="identifier">Lease Type <span id="red-star">*</span></td>
+                    <td>
+                        <select name="Lease Type" REQUIRED>
+                            {% for leasetype in leasetypes %}
+                                <option value= "{{leasetype}}" SELECTED>{{leasetype}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="identifier">Starting Month <span id="red-star">*</span></td>
+                    <td>
+                        <select name="Starting Month" REQUIRED>
+                            {% for startdate in startdates %}
+                                <option value= "{{startdate}}" SELECTED>{{startdate}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="identifier">Ending Month <span id="red-star">*</span></td>
+                    <td>
+                        <select name="Ending Month" REQUIRED>
+                            {% for enddate in enddates %}
+                                <option value= "{{enddate}}" SELECTED>{{enddate}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>   
+                <tr>
+                    <td id="identifier">Price <span id="red-star">*</span> </td>
+                    <td><input type="number" name="Price" REQUIRED/></td>
+                </tr>
+                <tr>
+                    <td>Description (optional)</td>
+                    <td><input type="text" name="Description" /></td>
+                </tr>
+                <br/><br/>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Submit" /></td>
+                </tr>
+            </form>
+        </table>
     </body>
 {% endblock %}
