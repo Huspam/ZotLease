@@ -22,16 +22,7 @@
             <a href="{{ url_for('pList') }}">Your Listings</a>
           </div>
         </div>
-        <div class="dropdown">
-          <button class="dropbtn">List your lease</button>
-          <div class="dropdown-content">
-            <a href="{{ url_for('vdc') }}">VDC</a>
-            <a href="{{ url_for('vdcn') }}">VDCN</a>
-            <a href="{{ url_for('plaza') }}">Plaza Verde</a>
-            <a href="{{ url_for('puerta') }}">Puerta Del Sol</a>
-            <a href="{{ url_for('arroyo') }}">Arroyo Vista</a>
-          </div>
-        </div>
+        <a class="active" href="{{ url_for('enter') }}">List your lease</a>
       </div> 
     </nav>
     <div>
