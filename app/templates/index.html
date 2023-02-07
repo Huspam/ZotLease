@@ -4,9 +4,11 @@
 {% block content %}
     <h1>Welcome to ZotLease</h1>
     <h2>
-        <img src="https://www.americancampus.com/getmedia/f22df01a-9752-4933-ae2b-1512dcbe5c0d/760_31_Gallery_730x547.jpg"/>
-        <p>{{listings[0][1]}} {{listings[0][4]}} Unit {{listings[0][2]}} for {{listings[0][3]}}</p>
-        <p>{{listings[0][5]}} - {{listings[0][6]}}</p>
-        <p>${{listings[0][8]}}</p>
+        {% for listing in listings %}
+            <img src="https://www.americancampus.com/getmedia/f22df01a-9752-4933-ae2b-1512dcbe5c0d/760_31_Gallery_730x547.jpg"/>
+            <p>{{listing[1]}} {{listing[2]}} {{listing[3]}} Unit {{listing[4]}} for {{listings[0][5]}}</p>
+            <p>{{listing[6]}} - {{listing[7]}}</p>
+            <p>${{listing[8]}}</p>
+        {% endfor %}
     </h2>
 {% endblock %}

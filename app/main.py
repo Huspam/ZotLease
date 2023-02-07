@@ -1,25 +1,34 @@
-from flask import Flask, render_template
-from api import get_data
+from flask import Flask, render_template, request
+from api import *
 import os
 import psycopg2
 import json
 
 app = Flask(__name__)
-#add pg_conn_string as environment variable key
-#postgresql://thzaw12264:dTnaXXnICWpFY0PfrW0q2g@coiled-drake-4885.6wr.cockroachlabs.cloud:26257/coiled-drake-4885.defaultdb is the value
-#need to add verify ssl to connection string later
 pg_conn_string = os.environ["PG_CONN_STRING"]
 connection = psycopg2.connect(pg_conn_string)
 cursor = connection.cursor()
+
+# insert_data(connection,cursor, 'VDC', 'Quad', 'Male', 62714, 'Sublet', 'February', 'June', 1004, 'Hi, please message me if interested!')
+# get_data(connection,cursor)
 
 @app.route("/", methods=['GET'])
 def index():
     listings = get_data(connection, cursor)
     return render_template('index.html',listings=listings)
 
-@app.route("/forms/vdc", methods=['GET'])
+@app.route("/forms/vdc", methods=['GET', 'POST'])
 def vdc():
-    return render_template('vdc.html')
+    communities = ['Arroyo Vista', 'Camino del Sol', 'Puerta del Sol', 'Plaza Verde', 'Plaza Verde II', 'Vista Del Campo', 'Vista Del Campo Norte']
+    roomtypes = ['Single', 'Double', 'Quad']
+    genders = ['Male', 'Female']
+    #unit
+    leasetypes = ['Sublease', 'Sublet']
+    startdates = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    enddates = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    #price
+    #description
+    return render_template('vdc.html', communities=communities, roomtypes=roomtypes, genders=genders, leasetypes=leasetypes, startdates=startdates, enddates=enddates)
 
 @app.route("/forms/vdcn", methods=['GET'])
 def vdcn():
@@ -49,5 +58,12 @@ def sList():
 def listing():
     return render_template('otherlisting.html')
 
+@app.route("/forms/success", methods=['GET', 'POST'])
+def add_listing():
+    listing = [request.form.get(key) for key in request.form.keys()]
+    insert_data(connection, cursor, *listing)
+    return render_template('listingsuccess.html')
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
+    connection.close()

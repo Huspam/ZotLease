@@ -14,12 +14,12 @@ def create_table(connection, cursor):
   cursor.execute("CREATE TABLE Listings ( \
   id UUID NOT NULL DEFAULT gen_random_uuid(), \
   community STRING NOT NULL, \
+  roomtype STRING NOT NULL, \
+  gender STRING NOT NULL, \
   unit INT NOT NULL, \
   leasetype STRING NOT NULL, \
-  roomtype STRING NOT NULL, \
   startdate STRING NOT NULL, \
   enddate STRING NOT NULL, \
-  gender STRING NOT NULL, \
   price INT NOT NULL, \
   description STRING NULL \
   )")
@@ -31,9 +31,10 @@ def drop_table(connection, cursor):
   connection.commit()
 
 
-def insert_data(connection, cursor, community, unit, leasetype, roomtype, startdate, enddate, gender, price, description=None):
+def insert_data(connection, cursor, community, roomtype, gender, unit, leasetype, startdate, enddate, price, description=None):
   cursor.execute(
-    "INSERT INTO Listings (community, unit, leasetype, roomtype, startdate, enddate, gender, price, description) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)", (community, unit, leasetype, roomtype, startdate, enddate, gender, price, description)
+    "INSERT INTO Listings (community, roomtype, gender, unit, leasetype, startdate, enddate, price, description) VALUES \
+      (%s, %s, %s, %s, %s, %s, %s, %s, %s)", (community, roomtype, gender, unit, leasetype, startdate, enddate, price, description)
   )
   connection.commit()
 
@@ -46,9 +47,6 @@ def delete_rows(connection, cursor, id):
 def get_data(connection, cursor):
   cursor.execute('''SELECT * from Listings''')
   result = cursor.fetchall()
+  print(result)
   connection.commit()
   return result
-
-# insert_data('VDC', 62714, 'Sublet', 'Quad', 'February', 'June', 'Male', 1004, 'hi')
-# delete_rows(0x85e0a2aa165b4893a411a9339fc17df7)
-#get_data()
