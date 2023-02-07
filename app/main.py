@@ -22,7 +22,7 @@ def vdc():
     communities = ['Arroyo Vista', 'Camino del Sol', 'Puerta del Sol', 'Plaza Verde', 'Plaza Verde II', 'Vista Del Campo', 'Vista Del Campo Norte']
     roomtypes = ['Single', 'Double', 'Quad']
     genders = ['Male', 'Female']
-    #unit
+    #uni
     leasetypes = ['Sublease', 'Sublet']
     startdates = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     enddates = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
