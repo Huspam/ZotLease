@@ -38,12 +38,17 @@ def create_accounts_table(connection, cursor):
   connection.commit()
 
 
-def drop_table(connection, cursor):
+def drop_listings_table(connection, cursor):
   cursor.execute("DROP TABLE Listings")
   connection.commit()
 
 
-def insert_data(connection, cursor, community, roomtype, gender, unit, leasetype, startdate, enddate, price, description=None):
+def drop_accounts_table(connection, cursor):
+  cursor.execute("DROP TABLE Accounts")
+  connection.commit()
+
+
+def insert_listing(connection, cursor, community, roomtype, gender, unit, leasetype, startdate, enddate, price, description=None):
   cursor.execute(
     "INSERT INTO Listings (community, roomtype, gender, unit, leasetype, startdate, enddate, price, description) VALUES \
       (%s, %s, %s, %s, %s, %s, %s, %s, %s)", (community, roomtype, gender, unit, leasetype, startdate, enddate, price, description)
@@ -56,8 +61,15 @@ def delete_rows(connection, cursor, id):
     connection.commit()
 
 
-def get_data(connection, cursor):
-  cursor.execute('''SELECT * from Listings''')
+def get_all_listings(connection, cursor):
+  cursor.execute("SELECT * from Listings")
+  result = cursor.fetchall() 
+  connection.commit()
+  return result
+
+
+def get_community_listings(connection, cursor, community):
+  cursor.execute("SELECT * from Listings WHERE community = %s", (community,))
   result = cursor.fetchall() 
   connection.commit()
   return result

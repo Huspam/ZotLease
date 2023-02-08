@@ -10,7 +10,7 @@ cursor = connection.cursor()
 
 @app.route("/", methods=['GET'])
 def index():
-    listings = get_data(connection, cursor)
+    listings = get_all_listings(connection, cursor)
     return render_template('index.html',listings=listings)
 
 @app.route("/forms/enter", methods=['GET'])
@@ -38,7 +38,7 @@ def listing():
 @app.route("/forms/success", methods=['GET', 'POST'])
 def add_listing():
     listing = [request.form.get(key) for key in request.form.keys()]
-    insert_data(connection, cursor, *listing)
+    insert_listing(connection, cursor, *listing)
     return render_template('listSuccess.html')
 
 if __name__ == "__main__":
